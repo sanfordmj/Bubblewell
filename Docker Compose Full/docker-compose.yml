@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  PaperBoy.web:
+    image: paperboy.web
+    container_name: Web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"

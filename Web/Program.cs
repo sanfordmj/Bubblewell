@@ -2,6 +2,8 @@
 
 
 using Application.Behaviors;
+using Asp.Versioning;
+using Asp.Versioning.Routing;
 using Domain.Abstractions;
 using FluentValidation;
 using Infrastructure;
@@ -11,17 +13,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Data;
 using System.Reflection;
 using Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 
 builder.Services.AddControllers()
     .AddApplicationPart(presentationAssembly);
+
+    
+builder.Services.AddApiVersioning(
+                    options =>
+                    {
+                        // reporting api versions will return the headers
+                        // "api-supported-versions" and "api-deprecated-versions"                        
+                        options.ReportApiVersions = true;
+                    })
+                .AddMvc();
 
 var applicationAssembly = typeof(Application.AssemblyReference).Assembly;
 
@@ -43,14 +55,16 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" });
 });
 
-var config = new ConfigurationBuilder()
-           .AddJsonFile($"appsettings.json")
-           .Build();
+
+
+ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddDbContext<ApplicationDbContext>(builder =>
-            builder.UseNpgsql(config.GetConnectionString("DefaultConnection")));
+            builder.UseNpgsql(configuration.GetConnectionString("Application")));
 
 builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IRouteAddressRepository, RouteAddressRepository>();
 
 builder.Services.AddScoped<IUnitOfWork>(
     factory => factory.GetRequiredService<ApplicationDbContext>());
@@ -60,11 +74,6 @@ builder.Services.AddScoped<IDbConnection>(
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -82,8 +91,18 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+//app.UseAuthentication();
 app.UseAuthorization();
+//app.MapControllers().RequireAuthorization();
 
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
-app.Run();
+using var scope = app.Services.CreateScope();
+
+await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+await dbContext.Database.MigrateAsync();
+
+
+
+await app.RunAsync();

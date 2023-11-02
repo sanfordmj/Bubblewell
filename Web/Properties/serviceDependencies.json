@@ -3,6 +3,11 @@
     "secrets1": {
       "type": "secrets",
       "dynamicId": null
+    },
+    "postgresql1": {
+      "type": "postgresql",
+      "connectionId": "DockerConnection",
+      "dynamicId": null
     }
   }
 }

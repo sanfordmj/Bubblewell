@@ -1,34 +1,41 @@
 ﻿using Domain.Primitives;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
     public sealed class Address : Entity
     {
-        public int IxAddress { get; set; }
-        [Required]
+
+        public Address(Guid Id, string street, string city, string state, string zip, double lat, double lng, string comments, bool bagged, DateTime createDate) : base(Id)
+        {
+            Street = street;
+            City = city;
+            State = state;
+            Zip = zip;
+            LAT = lat;
+            LNG = lng;
+            Comments = comments;
+            Bagged = bagged;
+            CreateDate = createDate;
+        }
+        public Address() { }
+
         public string? Street { get; set; }
-        [Required]
+      
         public string? City { get; set; }
-        [Required]
+        
         public string? State { get; set; }
-        [Required]
+       
         public string? Zip { get; set; }
-        [Required]
+        
         public double LAT { get; set; }
-        [Required]
+        
         public double LNG { get; set; }
 
         public string? Comments { get; set; }
-        [Required]
+        
         public bool Bagged { get; set; }
 
-        public List<Route>? Routes { get; set; }
-
+        public DateTime CreateDate { get; set; }
+        public List<RouteAddress>? RouteAddresses { get; set; }
     }
 }

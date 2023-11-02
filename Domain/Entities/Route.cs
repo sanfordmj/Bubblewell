@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Primitives;
+﻿using Domain.Primitives;
 
 namespace Domain.Entities
 {
@@ -16,9 +9,10 @@ namespace Domain.Entities
             CreateDate = createDate;
             Name = name;
         }
-        
+        public Route() { }
         public string? Name { get; set; }           
         public DateTime? CreateDate { get; set; }
-        public List<Address>? Addresses { get; set; }
+        public List<RouteAddress>? RouteAddresses { get; set; }
+
     }
 }

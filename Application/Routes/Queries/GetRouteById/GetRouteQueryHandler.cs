@@ -1,6 +1,5 @@
 ﻿using Application.Abstractions.Messaging;
 using Dapper;
-using Domain.Entities;
 using Domain.Exceptions;
 using System.Data;
 

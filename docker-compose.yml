@@ -10,3 +10,18 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+      - PaperBoy.db
+
+  PaperBoy.db:
+    image: postgres:13.2
+    hostname: 'PaperBoy.db'
+    container_name: PaperBoy.db
+    environment:
+      - POSTGRES_DB=paperboy
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./files/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
