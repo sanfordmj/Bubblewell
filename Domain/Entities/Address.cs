@@ -5,8 +5,10 @@ namespace Domain.Entities
     public sealed class Address : Entity
     {
 
-        public Address(Guid Id, string street, string city, string state, string zip, double lat, double lng, string comments, bool bagged, DateTime createDate) : base(Id)
+        public Address(Guid Id, AddressStatus addressStatus, AddressType addressType, string street, string city, string state, string zip, double lat, double lng, string comments, bool bagged,  DateTime createDate) : base(Id)
         {
+            AddressStatus = addressStatus;
+            AddressType = addressType;
             Street = street;
             City = city;
             State = state;
@@ -18,6 +20,10 @@ namespace Domain.Entities
             CreateDate = createDate;
         }
         public Address() { }
+
+        public AddressType AddressType { get; set; }
+
+        public AddressStatus AddressStatus { get; set; }
 
         public string? Street { get; set; }
       
