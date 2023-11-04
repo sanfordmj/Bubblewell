@@ -1,23 +1,24 @@
 ﻿using Application.Abstractions.Messaging;
+using Application.Companies.Queries.GetCompanyById;
 using Dapper;
 using Domain.Exceptions;
 using System.Data;
 
 namespace Application.Companies.Queries.GetRouteAddressById
 {
-    internal sealed class GetCompanyByIdHandler : IQueryHandler<GetRouteAddressByIdQuery, RouteAddressResponse>
+    internal sealed class GetCompanyByIdHandler : IQueryHandler<GetCompanyByIdQuery, GetCompanyByIdResponse>
     {
         private readonly IDbConnection _dbConnection;
 
-        public GetRouteAddressQueryHandler(IDbConnection dbConnection) => _dbConnection = dbConnection;
+        public GetCompanyByIdHandler(IDbConnection dbConnection) => _dbConnection = dbConnection;
         
-        public async Task<RouteAddressResponse> Handle(GetRouteAddressByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetCompanyByIdResponse> Handle(GetCompanyByIdQuery request, CancellationToken cancellationToken)
         {
-            const string sql = @"SELECT * FROM ""RouteAddresses"" WHERE ""Id"" = @Id";
-            var route = await _dbConnection.QueryFirstOrDefaultAsync<RouteAddressResponse>(sql, new { request.Id });
+            const string sql = @"SELECT * FROM ""Companies"" WHERE ""Id"" = @Id";
+            var route = await _dbConnection.QueryFirstOrDefaultAsync<GetCompanyByIdResponse>(sql, new { request.Id });
 
             if (route == null) {
-                throw new RouteAddressNotFoundException(request.Id);
+                throw new CompanyNotFoundException(request.Id);
             }
             return route;
         }
