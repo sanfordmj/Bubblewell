@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.RouteAddresses.Queries.GetRouteAddressById
+namespace Application.Users.Queries.GetUserById
 {
-    public sealed record GetRouteAddressByIdQuery(Guid Id) : IQuery<GetRouteAddressByIdResponse>;
+    public sealed record GetUserByIdQuery(Guid Id) : IQuery<UserResponse>; 
 }

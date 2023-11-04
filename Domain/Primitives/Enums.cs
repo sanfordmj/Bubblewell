@@ -8,6 +8,18 @@ using System.Threading.Tasks;
 namespace Domain.Primitives
 {
 
+    public enum CompanyType
+    {
+        Unknown = 0,
+        DeliveryService = 1,
+    }
+    public enum CompanyStatus
+    {
+        Unknown = 0,
+        Enabled = 1,
+        Disabled = 2,
+    }
+
     public enum UserType
     {
         [Description("Unknown")]
@@ -28,7 +40,8 @@ namespace Domain.Primitives
         Disabled = 2,
     }
 
-    public enum AddressStatus{
+    public enum AddressStatus
+    {
         [Description("Unknown")]
         Unknown = 0,
         [Description("Enabled")]
@@ -37,7 +50,8 @@ namespace Domain.Primitives
         Disabled = 2,
     }
 
-    public enum AddressType{
+    public enum AddressType
+    {
         [Description("Unknown")]
         Unknown = 0,
         [Description("Residential")]
@@ -48,7 +62,8 @@ namespace Domain.Primitives
         POBox = 3,
     }
 
-    public enum RouteStatus{
+    public enum RouteStatus
+    {
         [Description("Unknown")]
         Unknown = 0,
         [Description("Active")]
@@ -57,7 +72,8 @@ namespace Domain.Primitives
         Disabled = 2,
     }
 
-    public enum RouteType {
+    public enum RouteType 
+    {
         [Description("Unknown")]
         Unknown = 0,
         [Description("Paper Route")]

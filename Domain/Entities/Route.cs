@@ -7,7 +7,7 @@ namespace Domain.Entities
         public Route(Guid Id, RouteStatus routeStatus, RouteType routeType, string name, DateTime createDate): base(Id)
         {
             RouteStatus = routeStatus;
-            RouteType = routeType;            
+            RouteType = routeType;
             Name = name;
             CreateDate = createDate;
         }

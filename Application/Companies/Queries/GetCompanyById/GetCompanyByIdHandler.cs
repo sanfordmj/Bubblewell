@@ -3,18 +3,18 @@ using Dapper;
 using Domain.Exceptions;
 using System.Data;
 
-namespace Application.RouteAddresses.Queries.GetRouteAddressById
+namespace Application.Companies.Queries.GetRouteAddressById
 {
-    internal sealed class GetRouteAddressQueryHandler : IQueryHandler<GetRouteAddressByIdQuery, GetRouteAddressByIdResponse>
+    internal sealed class GetCompanyByIdHandler : IQueryHandler<GetRouteAddressByIdQuery, RouteAddressResponse>
     {
         private readonly IDbConnection _dbConnection;
 
         public GetRouteAddressQueryHandler(IDbConnection dbConnection) => _dbConnection = dbConnection;
         
-        public async Task<GetRouteAddressByIdResponse> Handle(GetRouteAddressByIdQuery request, CancellationToken cancellationToken)
+        public async Task<RouteAddressResponse> Handle(GetRouteAddressByIdQuery request, CancellationToken cancellationToken)
         {
             const string sql = @"SELECT * FROM ""RouteAddresses"" WHERE ""Id"" = @Id";
-            var route = await _dbConnection.QueryFirstOrDefaultAsync<GetRouteAddressByIdResponse>(sql, new { request.Id });
+            var route = await _dbConnection.QueryFirstOrDefaultAsync<RouteAddressResponse>(sql, new { request.Id });
 
             if (route == null) {
                 throw new RouteAddressNotFoundException(request.Id);
