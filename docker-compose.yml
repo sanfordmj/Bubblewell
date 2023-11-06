@@ -11,7 +11,8 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - PaperBoy.db
+      PaperBoy.db:
+        condition: service_healthy
 
   PaperBoy.db:
     image: postgres:13.2
@@ -21,6 +22,11 @@ services:
       - POSTGRES_DB=paperboy
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - ./files/db:/var/lib/postgresql/data
     ports:

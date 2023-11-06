@@ -1,9 +1,6 @@
 ﻿
 
-using Application.Routes.Commands.CreateRoute;
-using Application.Routes.Queries.GetRouteById;
 using Application.Users.Queries.GetUserByHash;
-using Application.Users.Queries.GetUserById;
 using Application.UserTokens.Commands.CreateUserToken;
 using Application.UserTokens.Queries.GetUserTokenById;
 using Asp.Versioning;
@@ -78,7 +75,7 @@ namespace Presentation.Controllers
         }
 
 
-        public string HashPassword(string plainPassword)
+        private string HashPassword(string plainPassword)
         {
             byte[] salt = RandomNumberGenerator.GetBytes(128 / 8); // divide by 8 to convert bits to bytes
             Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
