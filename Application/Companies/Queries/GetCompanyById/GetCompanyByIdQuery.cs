@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.Companies.Queries.GetCompanyById
 {
-    public sealed record GetCompanyByIdQuery(Guid Id) : IQuery<GetCompanyByIdResponse>;
+    public sealed record GetCompanyByIdQuery(Guid Id) : IQuery<GetCompanyByIdQueryResponse>;
 }

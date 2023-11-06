@@ -12,7 +12,7 @@ namespace Presentation.Controllers
     {
 
         [HttpGet("routeId:guid")]
-        [ProducesResponseType(typeof(RouteResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetRouteByIdQueryResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetRoute(Guid Id, CancellationToken cancellationToken)
         {

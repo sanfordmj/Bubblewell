@@ -9,12 +9,13 @@ namespace Domain.Entities
 {
     public sealed class Company : Entity
     {
-        public Company(Guid Id, CompanyStatus companyStatus, CompanyType companyType, string name, string phone, DateTime createDate) : base(Id)
+        public Company(Guid Id, CompanyStatus companyStatus, CompanyType companyType, string name, string phone, string email, DateTime createDate) : base(Id)
         {
             CompanyStatus = companyStatus;
             CompanyType = companyType;
             Name = name;
             Phone = phone;
+            Email = email;
             CreateDate = createDate;
         }
         public Company() { }
@@ -22,6 +23,7 @@ namespace Domain.Entities
         public CompanyType? CompanyType { get; set; }
         public string? Name { get; set; }
         public string? Phone { get; set;}
+        public string? Email { get; set; }
         public DateTime? CreateDate { get; set; }
 
     }

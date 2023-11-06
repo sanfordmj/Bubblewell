@@ -16,7 +16,11 @@ namespace Infrastructure.Configurations
         {
             builder.ToTable("Users");
             builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.UserName).IsUnique();
+            builder.Property(x=>x.FirstName).IsRequired();
+            builder.Property(x=>x.LastName).IsRequired();
+            builder.Property(x=>x.Email).IsRequired();
+            builder.Property(x=>x.UserType).IsRequired();
+            builder.HasIndex(x => x.Hash).IsUnique();
         }
     }
 }

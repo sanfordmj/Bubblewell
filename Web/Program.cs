@@ -3,20 +3,14 @@
 
 using Application.Behaviors;
 using Asp.Versioning;
-using Asp.Versioning.Routing;
 using Domain.Abstractions;
 using FluentValidation;
 using Infrastructure;
 using Infrastructure.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Data;
-using System.Reflection;
 using Web.Helpers;
 using Web.Middleware;
 
@@ -56,9 +50,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" });
 });
 
-
-
-
 ConfigurationManager configuration = builder.Configuration;
 
 var authenticationConfiguration = new AuthenticationConfiguration();
@@ -69,9 +60,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(builder => builder.UseNpgsql
 builder.Services.AddAuthentication("Token").AddScheme<TokenAuthenticationOptions, CustomAuthenticationHandler>("Token", "Token Title", null);
 
 builder.Services.AddScoped<IAuthenticationManager, JWTAuthenticationManager>();
-builder.Services.AddScoped<IRouteRepository, RouteRepository>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<ICompanyPublisherRepository, CompanyPublisherRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<ICompanyRouteRepository, CompanyRouteRepository>();
+builder.Services.AddScoped<ICompanyUserRepository, CompanyUserRepository>();
+builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+builder.Services.AddScoped<IRouteAddressPublisherRepository, RouteAddressPublisherRepository>();
 builder.Services.AddScoped<IRouteAddressRepository, RouteAddressRepository>();
+builder.Services.AddScoped<IRouteRepository, RouteRepository>();
+builder.Services.AddScoped<IUserAddressRepository, UserAddressRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRouteRepository, UserRouteRepository>();
+builder.Services.AddScoped<IUserTokenRepository, UserTokenRepository>();
 
 builder.Services.AddScoped<IUnitOfWork>(
     factory => factory.GetRequiredService<ApplicationDbContext>());

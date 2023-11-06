@@ -20,5 +20,10 @@ namespace Domain.Entities
 
         [Required, ForeignKey("Publisher")]
         public Guid PublisherId { get; set; }
+
+        public Company? Company { get; set; }
+        public Publisher? Publisher { get; set; }
+
+
     }
 }

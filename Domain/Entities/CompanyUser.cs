@@ -24,5 +24,9 @@ namespace Domain.Entities
 
         [Required, ForeignKey("User")]
         public Guid UserId { get; set; }
+
+        public Company? Company { get; set; }
+        public User? User { get; set; }
+        
     }
 }

@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Queries.GetUserById
 {
-    internal sealed class GetUserQueryHandler : IQueryHandler<GetUserByIdQuery, UserResponse>
+    internal sealed class GetUserQueryHandler : IQueryHandler<GetUserByIdQuery, GetUserByIdQueryResponse>
     {
         private readonly IDbConnection _dbConnection;
         public GetUserQueryHandler(IDbConnection dbConnection) => _dbConnection = dbConnection;  
-        public async Task<UserResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetUserByIdQueryResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             const string sql = @"SELECT * FROM ""Users"" WHERE ""Id"" = @Id";
-            var user = await _dbConnection.QueryFirstOrDefaultAsync<UserResponse>(sql, new { request.Id });
+            var user = await _dbConnection.QueryFirstOrDefaultAsync<GetUserByIdQueryResponse>(sql, new { request.Id });
 
             if (user == null)
             {

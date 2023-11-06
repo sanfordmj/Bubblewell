@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.Configuration;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Text.Encodings.Web;
 
 namespace Web.Helpers
 {
-    internal sealed class CustomAuthenticationHandler : AuthenticationHandler<TokenAuthenticationOptions>
+    public sealed class CustomAuthenticationHandler : AuthenticationHandler<TokenAuthenticationOptions>
     {
         
         private readonly IConfiguration _configuration;

@@ -21,7 +21,7 @@ namespace Application.Users.Commands.CreateUser
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new User(new Guid(), request.UserStatus, request.UserType, request.UserName, request.Password, request.FirstName, request.LastName, request.Email, request.CreateDate);
+            var user = new User(new Guid(), request.UserStatus, request.UserType, request.UserName, request.Hash, request.FirstName, request.LastName, request.Email, request.CreateDate);
             _userRepository.Insert(user);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return user.Id;

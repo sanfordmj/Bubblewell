@@ -8,7 +8,6 @@ namespace Domain.Primitives
 {
     public abstract class Entity
     {
-
         protected Entity(Guid Id) => this.Id = Id;
 
         protected Entity() { }

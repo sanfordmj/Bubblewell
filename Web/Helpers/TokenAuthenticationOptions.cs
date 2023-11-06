@@ -2,7 +2,7 @@
 
 namespace Web.Helpers
 {
-    internal class TokenAuthenticationOptions: AuthenticationSchemeOptions
+    public class TokenAuthenticationOptions: AuthenticationSchemeOptions
     {
 
     }

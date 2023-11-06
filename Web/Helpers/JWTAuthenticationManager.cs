@@ -49,10 +49,15 @@ namespace Web.Helpers
             if (string.IsNullOrEmpty(_authorizationHeader)) {
                 throw new ArgumentNullException("jwt token required");
             }
+            if (_configuration == null)
+            {
+                throw new ArgumentNullException("configuration settings required");
+            }
 
             string token = _authorizationHeader.Substring("JWT".Length).Trim();
 
             var tokenHandler = new JwtSecurityTokenHandler();
+            
             string? myKeyValue = _configuration["AuthenticationConfiguration:JwtBearerConfiguration:IssuerSigningKey"];
             if (myKeyValue == null)
                 throw new NullReferenceException("IssuerSigningKey is null");

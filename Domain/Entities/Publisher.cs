@@ -13,6 +13,7 @@ namespace Domain.Entities
             Earnings = earnings;        
         }
 
+        public Publisher() { }
         public string? Name { get; set; }
       
         public string? Abbreviation { get; set; }

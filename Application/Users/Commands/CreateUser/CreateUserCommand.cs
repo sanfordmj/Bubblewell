@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Commands.CreateUser
 {
-    public sealed record CreateUserCommand(Guid Id, UserStatus UserStatus, UserType UserType, string UserName, string Password, string FirstName, string LastName, string Email, DateTime CreateDate) : ICommand<Guid>;
+    public sealed record CreateUserCommand(Guid Id, UserStatus UserStatus, UserType UserType, string UserName,  string Hash, string FirstName, string LastName, string Email, DateTime CreateDate) : ICommand<Guid>;
 }

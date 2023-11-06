@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyPublishers.Queries.GetCompanyPublisherById
 {
-    public sealed record GetCompanyPublisherByIdQuery(Guid Id) : IQuery<GetCompanyPublisherResponse>;
+    public sealed record GetCompanyPublisherByIdQuery(Guid Id) : IQuery<GetCompanyPublisherByIdQueryResponse>;
 }

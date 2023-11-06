@@ -20,5 +20,10 @@ namespace Domain.Entities
 
         [Required, ForeignKey("Route")]
         public Guid RouteId { get; set; }
+
+        public Company? Company { get; set; }
+        public Route? Route { get; set; }
+
+
     }
 }

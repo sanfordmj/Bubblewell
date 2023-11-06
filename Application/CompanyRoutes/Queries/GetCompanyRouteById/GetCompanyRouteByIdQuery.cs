@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyRoutes.Queries.GetCompanyRouteById
 {
-    public sealed record GetCompanyRouteByIdQuery(Guid Id) : IQuery<GetCompanyRouteResponse>;
+    public sealed record GetCompanyRouteByIdQuery(Guid Id) : IQuery<GetCompanyRouteByIdQueryResponse>;
 }

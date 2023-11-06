@@ -23,6 +23,8 @@ namespace Domain.Entities
         [Required, ForeignKey("Publisher")]
         public Guid PublisherId { get; set; }
 
+        public RouteAddress? RouteAddress { get; set; }
+        public Publisher? Publisher { get; set; }
 
     }
 }

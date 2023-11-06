@@ -2,5 +2,5 @@
 
 namespace Application.Routes.Queries.GetRouteById
 {
-    public sealed record GetRouteByIdQuery(Guid Id) : IQuery<RouteResponse>;
+    public sealed record GetRouteByIdQuery(Guid Id) : IQuery<GetRouteByIdQueryResponse>;
 }
