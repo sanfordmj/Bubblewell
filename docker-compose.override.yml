@@ -3,8 +3,10 @@ version: '3.4'
 services:
   PaperBoy.web:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=https://+:443;http://+:80      
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=81c145ce-e510-4521-b641-ae67815f9145
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx      
+      - ASPNETCORE_ENVIRONMENT=Staging 
     ports:
       - "80:80"
       - "443:443"

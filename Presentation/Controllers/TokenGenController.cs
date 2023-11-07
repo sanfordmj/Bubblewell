@@ -1,13 +1,18 @@
 ﻿
 
+using Application.Routes.Queries.GetRouteById;
+using Application.Users.Commands.CreateUser;
 using Application.Users.Queries.GetUserByHash;
+using Application.Users.Queries.GetUserById;
 using Application.UserTokens.Commands.CreateUserToken;
 using Application.UserTokens.Queries.GetUserTokenById;
 using Asp.Versioning;
+using Domain.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
@@ -46,10 +51,20 @@ namespace Presentation.Controllers
             var myIssuer = "http://localhost/gardenservice.signit/";
             var myAudience = "http://dockergardenservice.com/";
 
-            string hash = HashPassword(request.Password);
+            Guid Id = Guid.Parse("2f32bba9-2e90-422c-b386-cc16b0e398de");
+            var query = new GetUserByIdQuery(Id);
+            var userResponse = await Sender.Send(query, cancellationToken);
+            User user = userResponse.Adapt<User>();
 
-            var userQuery = new GetUserByHashQuery(hash);
-            var user = await Sender.Send(userQuery, cancellationToken);
+            PasswordHasher<User> hasher = new PasswordHasher<User>();
+
+            PasswordVerificationResult result =  hasher.VerifyHashedPassword(user, user.Hash, request.Password);
+
+            //var Myhash = hasher.HashPassword(user.Adapt<User>(), request.Password);
+
+
+            //var userQuery = new GetUserByHashQuery(hash);
+            //var user = await Sender.Send(userQuery, cancellationToken);
 
             var claims = new System.Security.Claims.Claim[]
             {

@@ -6,11 +6,13 @@ using Asp.Versioning;
 using Domain.Abstractions;
 using FluentValidation;
 using Infrastructure;
+using Infrastructure.Extensions;
 using Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Data;
+using System.Net;
 using Web.Helpers;
 using Web.Middleware;
 
@@ -56,6 +58,7 @@ var authenticationConfiguration = new AuthenticationConfiguration();
 builder.Configuration.GetSection(nameof(AuthenticationConfiguration)).Bind("AuthenticationConfiguration", authenticationConfiguration);
 
 builder.Services.AddDbContext<ApplicationDbContext>(builder => builder.UseNpgsql(configuration.GetConnectionString("Application")));
+builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddAuthentication("Token").AddScheme<TokenAuthenticationOptions, CustomAuthenticationHandler>("Token", "Token Title", null);
 
@@ -96,12 +99,14 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web v1"));
-}
+//}
+//Seed database with root user
+app.UseItToSeedSqlServer();
 
 app.UseCors();
 

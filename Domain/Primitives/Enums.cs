@@ -24,10 +24,12 @@ namespace Domain.Primitives
     {
         [Description("Unknown")]
         Unknown = 0,
-        [Description("Standard")]
-        Enabled = 1,
+        [Description("Root")]
+        Root = 1,
         [Description("Administrator")]
-        Disabled = 2,
+        Administrator = 2,
+        [Description("User")]
+        User = 3,
     }
 
     public enum UserStatus 

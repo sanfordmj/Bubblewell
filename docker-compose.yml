@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - PASSWORD_ENV_SEEDED=81c145ce-e510-4521-b641-ae67815f9145
     ports:
       - "80:80"
       - "443:443"
