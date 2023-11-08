@@ -16,11 +16,15 @@ namespace Infrastructure.Configurations
         {
             builder.ToTable("Users");
             builder.HasKey(x => x.Id);
-            builder.Property(x=>x.FirstName).IsRequired();
-            builder.Property(x=>x.LastName).IsRequired();
-            builder.Property(x=>x.Email).IsRequired();
             builder.Property(x=>x.UserType).IsRequired();
-            builder.HasIndex(x => x.Hash).IsUnique();
+            builder.Property(x => x.UserName).HasMaxLength(120);
+            builder.HasIndex(x => x.UserName).IsUnique();
+            builder.Property(x => x.Hash).HasMaxLength(500).IsRequired();
+            builder.Property(x=>x.FirstName).HasMaxLength(120).IsRequired();
+            builder.Property(x=>x.LastName).HasMaxLength(120).IsRequired();
+            builder.Property(x => x.Email).HasMaxLength(254);
+            builder.HasIndex(x => x.Email).IsUnique();
+            builder.Property(x => x.CellPhone).HasMaxLength(18).IsRequired();
         }
     }
 }

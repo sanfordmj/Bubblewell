@@ -13,12 +13,12 @@ namespace Application.UserTokens.Commands.CreateUserToken
     {
         public CreateUserTokenCommandValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty();
+            RuleFor(x => x.UserId).NotNull();
             RuleFor(x => x.Token).NotEmpty();
-            RuleFor(x => x.IsRevoked).NotEmpty();
-            RuleFor(x => x.IsExpired).NotEmpty();
-            RuleFor(x => x.CreateDate).NotEmpty();
-            RuleFor(x => x.ExpireDate).NotEmpty();
+            RuleFor(x => x.IsRevoked).NotNull();
+            RuleFor(x => x.IsExpired).NotNull();
+            RuleFor(x => x.CreateDate).NotNull();
+            RuleFor(x => x.ExpireDate).NotNull();
         }
     }
 }

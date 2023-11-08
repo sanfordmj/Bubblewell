@@ -16,9 +16,10 @@ namespace Infrastructure.Configurations
         {
             builder.ToTable("UserTokens");
             builder.HasKey(x => x.Id);
-            builder.Property(x=>x.Token).HasMaxLength(500).IsRequired();
+            builder.Property(x=>x.Token).HasMaxLength(1000).IsRequired();
             builder.Property(x => x.CreateDate).IsRequired();
             builder.Property(x=>x.ExpireDate).IsRequired();
+            builder.Property(x => x.IsExpired).IsRequired();
             builder.Property(x => x.IsRevoked).IsRequired();
             builder.HasIndex(ra => new { ra.UserId });
         }

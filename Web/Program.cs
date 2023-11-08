@@ -106,7 +106,7 @@ var app = builder.Build();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web v1"));
 //}
 //Seed database with root user
-app.UseItToSeedSqlServer();
+
 
 app.UseCors();
 
@@ -122,11 +122,13 @@ app.MapControllers().RequireAuthorization();
 
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
-using var scope = app.Services.CreateScope();
+app.UseItToSeedSqlServer();
 
-await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+//using var scope = app.Services.CreateScope();
 
-await dbContext.Database.MigrateAsync();
+//await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+//await dbContext.Database.MigrateAsync();
 
 
 

@@ -12,13 +12,14 @@ namespace Domain.Entities
 {
     public sealed class User: Entity
     {
-        public User(Guid Id, UserStatus userStatus, UserType userType, string userName, string hash, string firstName, string lastName, string email, DateTime createDate) : base(Id) { 
+        public User(Guid Id, UserStatus userStatus, UserType userType, string userName, string hash, string firstName, string lastName, string cellPhone, string email, DateTime createDate) : base(Id) { 
             UserStatus = userStatus;
             UserType = userType;
             UserName = userName;
             Hash = hash;
             FirstName = firstName;
             LastName = lastName;
+            CellPhone = cellPhone;
             Email = email;
         }
         public User() { }
@@ -28,6 +29,7 @@ namespace Domain.Entities
         public string? Hash { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public string? CellPhone {  get; set; }
         public string? Email { get; set; }
         public DateTime? CreateDate { get; set; }
 

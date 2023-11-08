@@ -16,7 +16,7 @@ namespace Infrastructure.Extensions
 
             var users = new User[]
             {
-                new User(new Guid(), UserStatus.Enabled, UserType.Root, "root", "WVYm5WI5P5xgDDUM4C/UGut2THB9lS9A4QOF4PVlEfg=", "root", "root", "admin@bubblewell.com", DateTime.Now)
+                new User(new Guid(), UserStatus.Enabled, UserType.Root, "root", "AQAAAAIAAYagAAAAECzB1628XhTIV7xMaeLkMNVptC+zhmw/eAACvZdCeJVv8Yz4lfqcrVw+AkVZhyXH/g==", "root", "root", "651-808-5265", "root@bubblewell.com", DateTime.Now)
             };
             //add other users
         

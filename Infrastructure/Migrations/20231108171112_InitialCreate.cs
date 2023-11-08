@@ -99,11 +99,12 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserStatus = table.Column<int>(type: "integer", nullable: true),
                     UserType = table.Column<int>(type: "integer", nullable: false),
-                    UserName = table.Column<string>(type: "text", nullable: true),
-                    Hash = table.Column<string>(type: "text", nullable: true),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
+                    UserName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: true),
+                    Hash = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
+                    CellPhone = table.Column<string>(type: "character varying(18)", maxLength: 18, nullable: false),
+                    Email = table.Column<string>(type: "character varying(254)", maxLength: 254, nullable: true),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
@@ -248,7 +249,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Token = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    Token = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ExpireDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     IsExpired = table.Column<bool>(type: "boolean", nullable: false),
@@ -363,9 +364,15 @@ namespace Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Hash",
+                name: "IX_Users_Email",
                 table: "Users",
-                column: "Hash",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
