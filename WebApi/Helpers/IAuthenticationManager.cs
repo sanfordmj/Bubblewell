@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 
-namespace Web.Helpers
+namespace WebApi.Helpers
 {
     /// <summary>
     /// Composable AuthenticationManager

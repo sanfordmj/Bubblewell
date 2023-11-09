@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>PaperBoy.web</DockerServiceName>
+    <DockerServiceName>PaperBoy.webapi</DockerServiceName>
     <ProjectGuid>50871a36-7cc6-4f86-824d-46e14a11c888</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>

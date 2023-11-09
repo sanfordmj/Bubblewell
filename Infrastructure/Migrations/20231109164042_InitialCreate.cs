@@ -16,8 +16,8 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    AddressType = table.Column<int>(type: "integer", nullable: false),
                     AddressStatus = table.Column<int>(type: "integer", nullable: false),
+                    AddressType = table.Column<int>(type: "integer", nullable: false),
                     Street = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
                     City = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     State = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
@@ -26,7 +26,7 @@ namespace Infrastructure.Migrations
                     LNG = table.Column<double>(type: "double precision", maxLength: 255, nullable: false),
                     Comments = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Bagged = table.Column<bool>(type: "boolean", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(type: "character varying(110)", maxLength: 110, nullable: false),
                     Phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Email = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,7 +72,7 @@ namespace Infrastructure.Migrations
                     RouteStatus = table.Column<int>(type: "integer", nullable: false),
                     RouteType = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,7 +105,7 @@ namespace Infrastructure.Migrations
                     LastName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
                     CellPhone = table.Column<string>(type: "character varying(18)", maxLength: 18, nullable: false),
                     Email = table.Column<string>(type: "character varying(254)", maxLength: 254, nullable: true),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -172,7 +172,7 @@ namespace Infrastructure.Migrations
                     Visible = table.Column<bool>(type: "boolean", nullable: false),
                     Reviewed = table.Column<bool>(type: "boolean", nullable: false),
                     Position = table.Column<int>(type: "integer", nullable: false),
-                    ModifyDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    ModifyDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,7 +224,7 @@ namespace Infrastructure.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     AddressId = table.Column<Guid>(type: "uuid", nullable: false),
                     Visible = table.Column<bool>(type: "boolean", nullable: false),
-                    ModifyDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    ModifyDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,8 +250,8 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Token = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ExpireDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ExpireDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsExpired = table.Column<bool>(type: "boolean", nullable: false),
                     IsRevoked = table.Column<bool>(type: "boolean", nullable: false)
                 },

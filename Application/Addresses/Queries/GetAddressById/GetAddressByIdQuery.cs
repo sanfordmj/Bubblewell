@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Application.Addresses.Queries.GetAddressById
 {
-    public sealed record GetAddressByIdQuery(Guid Id): IQuery<AddressResponse>;
+    public sealed record GetAddressByIdQuery(Guid Id): IQuery<GetAddressByIdQueryResponse>;
 }

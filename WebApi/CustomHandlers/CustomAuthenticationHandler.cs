@@ -3,12 +3,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text.Encodings.Web;
+using WebApi.Helpers;
 
-namespace Web.Helpers
+namespace WebApi.CustomHandlers
 {
     public sealed class CustomAuthenticationHandler : AuthenticationHandler<TokenAuthenticationOptions>
     {
-        
+
         private readonly IConfiguration _configuration;
         public CustomAuthenticationHandler(
                 IOptionsMonitor<TokenAuthenticationOptions> options,
@@ -23,31 +24,8 @@ namespace Web.Helpers
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-
-            if(_configuration == null) 
-            {
-                return AuthenticateResult.Fail("Unauthorized configuration");
-            }
-
-            if (!Request.Headers.ContainsKey("Authorization"))
-                return AuthenticateResult.Fail("Unauthorized");
-
-            string? authorizationHeader = Request.Headers["Authorization"];
-            if (string.IsNullOrEmpty(authorizationHeader))
-            {
-                return AuthenticateResult.Fail("Unauthorized");
-            }
-
-
-            IAuthenticationManager? authenticationManager = null;
-
-            if (authorizationHeader.StartsWith("JWT", StringComparison.OrdinalIgnoreCase))
-            {
-                authenticationManager = new JWTAuthenticationManager(authorizationHeader, _configuration);
-            }else{
-                return AuthenticateResult.Fail("Unauthorized");
-            }
-
+            JWTAuthenticationManager authenticationManager = new JWTAuthenticationManager(Request.Headers, _configuration, this.Scheme);
+           
             return await authenticationManager.AuthenticateAsync();
         }
     }

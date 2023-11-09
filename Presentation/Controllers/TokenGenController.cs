@@ -1,8 +1,6 @@
 ﻿
 
-using Application.Routes.Queries.GetRouteById;
-using Application.Users.Commands.CreateUser;
-using Application.Users.Queries.GetUserByHash;
+
 using Application.Users.Queries.GetUserById;
 using Application.UserTokens.Commands.CreateUserToken;
 using Application.UserTokens.Queries.GetUserTokenById;
@@ -10,16 +8,13 @@ using Asp.Versioning;
 using Domain.Entities;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Presentation.Controllers
@@ -31,8 +26,13 @@ namespace Presentation.Controllers
     [AllowAnonymous]
     public sealed class TokenGenController : ApiController
     {
-        
+        private readonly IConfiguration _configuration;
         private readonly ILogger<TokenGenController>? _logger;
+        public TokenGenController(ILogger<TokenGenController>? logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            _configuration = configuration;
+        }
 
         [HttpGet("tokenId:guid")]
         [ProducesResponseType(typeof(GetUserTokenByIdQuery), StatusCodes.Status200OK)]
@@ -51,18 +51,35 @@ namespace Presentation.Controllers
         {
             try
             {
-                var mySecurityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(Encoding.ASCII.GetBytes("this is my custom Secret key for authentication"));
-                var myIssuer = "http://localhost/gardenservice.signit/";
-                var myAudience = "http://dockergardenservice.com/";
+              
+                string? IssuerSigningKey = _configuration["AuthenticationConfiguration:JwtBearerConfiguration:IssuerSigningKey"];
+                string? Issuer = _configuration["AuthenticationConfiguration:JwtBearerConfiguration:TokenValidationConfiguration:Issuer"];
+                string? ValidAudience = _configuration["AuthenticationConfiguration:JwtBearerConfiguration:TokenValidationConfiguration:Audience"];
+
+                if (string.IsNullOrEmpty(IssuerSigningKey))
+                    throw new ArgumentNullException("SigningKey is null");
+
+                if (string.IsNullOrEmpty(Issuer))
+                    throw new ArgumentNullException("Issuer is null");
+
+                if (string.IsNullOrEmpty(ValidAudience))
+                    throw new ArgumentNullException("ValidAudience is null");
+
+
+                var mySecurityKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(Encoding.ASCII.GetBytes(IssuerSigningKey));
 
                 var query = new GetUserByUsernameOrEmailQuery(request.UserName);
                 var userResponse = await Sender.Send(query, cancellationToken);
                 User user = userResponse.Adapt<User>();
 
-                PasswordHasher<User> hasher = new PasswordHasher<User>();
-                string outhash = hasher.HashPassword(user, request.Password);
+                if (user == null)
+                    throw new UnauthorizedAccessException("User is not authorized");
 
+                PasswordHasher<User> hasher = new PasswordHasher<User>();                
                 PasswordVerificationResult result = hasher.VerifyHashedPassword(user, user.Hash ??= "", request.Password);
+
+                if(result == PasswordVerificationResult.Failed)
+                    throw new UnauthorizedAccessException("User is not authorized");
 
                 var claims = new Dictionary<string, object>();
                 claims.Add("UserId", user.Id.ToString());
@@ -74,8 +91,8 @@ namespace Presentation.Controllers
                 {
                     Claims = claims,
                     Expires = expire,
-                    Issuer = myIssuer,
-                    Audience = myAudience,
+                    Issuer = Issuer,
+                    Audience = ValidAudience,
                     SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(mySecurityKey, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature)
                 };
 
@@ -93,7 +110,7 @@ namespace Presentation.Controllers
                 return CreatedAtAction(nameof(GetToken), new { getUserTokenByIdQueryResponse.Id, getUserTokenByIdQueryResponse.Token });
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }

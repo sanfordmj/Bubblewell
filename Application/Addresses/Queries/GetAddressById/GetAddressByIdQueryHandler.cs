@@ -5,14 +5,14 @@ using System.Data;
 
 namespace Application.Addresses.Queries.GetAddressById
 {
-    internal sealed class GetAddressByIdQueryHandler : IQueryHandler<GetAddressByIdQuery, AddressResponse>
+    internal sealed class GetAddressByIdQueryHandler : IQueryHandler<GetAddressByIdQuery, GetAddressByIdQueryResponse>
     {
         private readonly IDbConnection _dbConnection;
         public GetAddressByIdQueryHandler(IDbConnection dbConnection) => _dbConnection = dbConnection;
-        public async Task<AddressResponse> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetAddressByIdQueryResponse> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
         {
             const string sql = @"SELECT * FROM ""Addresses"" WHERE ""Id"" = @Id";
-            var address = await _dbConnection.QueryFirstOrDefaultAsync<AddressResponse>(sql, new { request.Id });
+            var address = await _dbConnection.QueryFirstOrDefaultAsync<GetAddressByIdQueryResponse>(sql, new { request.Id });
 
             if (address == null)
             {

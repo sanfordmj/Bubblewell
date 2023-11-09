@@ -7,7 +7,7 @@ using Domain.Exceptions.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Web.Middleware
+namespace WebApi.Middleware
 {
     internal sealed class ExceptionHandlingMiddleware : IMiddleware
     {

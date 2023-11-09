@@ -12,9 +12,10 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Data;
-using System.Net;
-using Web.Helpers;
-using Web.Middleware;
+using WebApi.Configurations;
+using WebApi.CustomHandlers;
+using WebApi.Helpers;
+using WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +50,7 @@ builder.Services.AddSwaggerGen(c =>
   
     c.IncludeXmlComments(presentationDocumentationFilePath);
 
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bubblewell.WebApi", Version = "v1" });
 });
 
 ConfigurationManager configuration = builder.Configuration;
@@ -108,9 +109,12 @@ var app = builder.Build();
 //Seed database with root user
 
 
+
 app.UseCors();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+//app.UseMiddleware<AuthenticationMiddleware>();
+
 
 app.UseHttpsRedirection();
 

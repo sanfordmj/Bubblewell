@@ -48,7 +48,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("character varying(255)");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<double>("LAT")
                         .HasMaxLength(255)
@@ -92,7 +92,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("CreateDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -212,7 +212,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("CreateDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -241,7 +241,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("ModifyDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("Position")
                         .IsRequired()
@@ -300,7 +300,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("character varying(18)");
 
                     b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .HasMaxLength(254)
@@ -353,7 +353,7 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("ModifyDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -399,11 +399,11 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("CreateDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("ExpireDate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsExpired")
                         .HasColumnType("boolean");

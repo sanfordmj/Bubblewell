@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-  PaperBoy.web:
-    image: paperboy.web
-    container_name: Web
+  PaperBoy.webapi:
+    image: paperboy.webapi
+    container_name: api
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
   PaperBoy.db:
     image: postgres:13.2
     hostname: 'PaperBoy.db'
-    container_name: PaperBoy.db
+    container_name: db
     environment:
       - POSTGRES_DB=paperboy
       - POSTGRES_USER=postgres

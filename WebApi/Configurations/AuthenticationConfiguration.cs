@@ -1,4 +1,4 @@
-﻿namespace Web.Helpers
+﻿namespace WebApi.Configurations
 {
     public class AuthenticationConfiguration
     {

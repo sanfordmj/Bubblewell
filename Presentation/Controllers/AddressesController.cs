@@ -17,8 +17,8 @@ namespace Presentation.Controllers
     {
         
         [HttpGet("addressId:guid"), MapToApiVersion(1.0)]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(AddressResponse), StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(typeof(GetAddressByIdQueryResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GetAddressByIdQueryResponse), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetAddress(Guid Id, CancellationToken cancellationToken)
         {
