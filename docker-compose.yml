@@ -14,7 +14,7 @@ services:
         my-network-name:
             aliases:
                 - proxy-name
-
+---
   PaperBoy.webapi:
     image: paperboy.webapi
     container_name: api
