@@ -9,8 +9,12 @@ using Infrastructure;
 using Infrastructure.Extensions;
 using Infrastructure.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Datasync;
+using Microsoft.AspNetCore.Datasync.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Presentation.Services;
+using Presentation.TableEntities;
 using System.Data;
 using WebApi.Configurations;
 using WebApi.CustomHandlers;
@@ -77,6 +81,15 @@ builder.Services.AddScoped<IUserAddressRepository, UserAddressRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserRouteRepository, UserRouteRepository>();
 builder.Services.AddScoped<IUserTokenRepository, UserTokenRepository>();
+
+//builder.Services.AddSingleton<IRepository<AddressSync>>(new InMemoryRepository<AddressSync>());
+builder.Services.AddScoped<IRepository<AddressSync>, AddressRespo>();
+
+
+//builder.Services.AddSingleton<IAddressSyncService, InMemoryAddressSyncService>();
+
+builder.Services.AddDatasyncControllers();
+
 
 builder.Services.AddScoped<IUnitOfWork>(
     factory => factory.GetRequiredService<ApplicationDbContext>());

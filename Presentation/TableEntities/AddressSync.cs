@@ -11,6 +11,7 @@ namespace Presentation.TableEntities
 {
     public sealed class AddressSync : InMemoryTableData
     {
+        
         public AddressStatus AddressStatus { get; set; }
 
         public AddressType AddressType { get; set; }

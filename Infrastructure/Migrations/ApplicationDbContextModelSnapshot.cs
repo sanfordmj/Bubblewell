@@ -50,6 +50,9 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
                     b.Property<double>("LAT")
                         .HasMaxLength(255)
                         .HasColumnType("double precision");
@@ -67,6 +70,13 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("character varying(80)");
+
+                    b.Property<DateTimeOffset>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<byte[]>("Version")
+                        .IsRequired()
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Zip")
                         .IsRequired()

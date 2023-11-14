@@ -26,7 +26,10 @@ namespace Infrastructure.Migrations
                     LNG = table.Column<double>(type: "double precision", maxLength: 255, nullable: false),
                     Comments = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Bagged = table.Column<bool>(type: "boolean", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Version = table.Column<byte[]>(type: "bytea", nullable: false),
+                    UpdatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    Deleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
