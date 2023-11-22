@@ -6,7 +6,7 @@ namespace Domain.Entities
 {
     public sealed class RouteAddress: Entity
     {
-        public RouteAddress(Guid Id, Guid routeId, Guid addressId, bool visible, bool reviewed, int position, DateTime updatedAt, bool deleted) : base(Id)
+        public RouteAddress(Guid Id, Guid routeId, Guid addressId, bool visible, bool reviewed, int position, DateTime? updatedAt, bool deleted) : base(Id)
         {
             RouteId = routeId;
             AddressId = addressId;

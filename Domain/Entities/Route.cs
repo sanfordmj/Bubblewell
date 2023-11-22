@@ -4,7 +4,7 @@ namespace Domain.Entities
 {
     public sealed class Route: Entity
     {
-        public Route(Guid Id, RouteStatus routeStatus, RouteType routeType, string name, DateTime createDate, DateTime updatedAt, bool deleted): base(Id)
+        public Route(Guid Id, RouteStatus routeStatus, RouteType routeType, string name, DateTime? createDate, DateTime? updatedAt, bool deleted): base(Id)
         {
             RouteStatus = routeStatus;
             RouteType = routeType;
