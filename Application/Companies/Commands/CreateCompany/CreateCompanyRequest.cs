@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Application.Companies.Commands.CreateCompany
 {
-    public sealed record CreateCompanyRequest(CompanyStatus CompanyStatus, CompanyType CompanyType, string Name, string Phone, string Email, DateTime CreateDate);
+    public sealed record CreateCompanyRequest(CompanyStatus CompanyStatus, CompanyType CompanyType, string Name, string Phone, string Email, DateTime? CreateDate, DateTime? UpdatedAt, bool Deleted);
 }

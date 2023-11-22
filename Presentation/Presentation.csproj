@@ -9,10 +9,6 @@
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="7.1.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Datasync" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Datasync.EFCore" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Datasync.InMemory" Version="6.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
   </ItemGroup>

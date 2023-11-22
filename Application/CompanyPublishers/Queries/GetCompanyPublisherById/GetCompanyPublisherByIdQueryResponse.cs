@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyPublishers.Queries.GetCompanyPublisherById
 {
-    public sealed record GetCompanyPublisherByIdQueryResponse(Guid Id, Guid CompanyId, Guid PublisherId);
+    public sealed record GetCompanyPublisherByIdQueryResponse(Guid Id, Guid CompanyId, Guid PublisherId, DateTime? UpdatedAt, bool Deleted);
 }

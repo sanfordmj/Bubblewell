@@ -11,7 +11,7 @@ namespace Domain.Entities
 {
     public sealed class UserToken : Entity
     {
-        public UserToken(Guid id, Guid userId, string token, DateTime createDate, DateTime expireDate, bool isExpired, bool isRevoked) : base(id) 
+        public UserToken(Guid id, Guid userId, string token, DateTime? createDate, DateTime? expireDate, bool isExpired, bool isRevoked, DateTime? updatedAt, bool deleted) : base(id) 
         { 
             UserId = userId;
             Token = token;
@@ -19,6 +19,8 @@ namespace Domain.Entities
             ExpireDate = expireDate;
             IsExpired = isExpired;
             IsRevoked = isRevoked;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
         }
         public UserToken() { }
         [Required, ForeignKey("User")]
@@ -28,7 +30,8 @@ namespace Domain.Entities
         public DateTime? ExpireDate { get; set;}
         public bool IsExpired { get; set; }
         public bool IsRevoked { get; set; }
-
+        public DateTime? UpdatedAt { get; set; }
+        public bool Deleted { get; set; }
         public User? User { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace Infrastructure.Configurations
             builder.Property(x=>x.Name).HasMaxLength(80).IsRequired();
             builder.Property(x=>x.Abbreviation).HasMaxLength(4).IsRequired();
             builder.Property(x => x.Earnings);
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }

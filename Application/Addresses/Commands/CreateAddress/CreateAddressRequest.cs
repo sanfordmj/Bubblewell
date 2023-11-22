@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace Application.Addresses.Commands.CreateAddress
 {
-    public sealed record class CreateAddressRequest(AddressStatus addressStatus, AddressType addressType, string Street, string City, string State, string Zip, double Lat, double Lng, string Comments, bool Bagged, DateTime CreateDate, byte[] Version, DateTimeOffset UpdatedAt, bool Deleted);
+    public sealed record class CreateAddressRequest(string SyncId, AddressStatus AddressStatus, AddressType AddressType, string Street, string City, string State, string Zip, double Lat, double Lng, string Comments, bool Bagged, DateTime? CreateDate, DateTime? UpdatedAt, bool Deleted);
 }

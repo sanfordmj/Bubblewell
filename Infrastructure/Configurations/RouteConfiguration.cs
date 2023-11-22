@@ -12,6 +12,8 @@ namespace Infrastructure.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasMaxLength(255).IsRequired();
             builder.Property(x => x.CreateDate).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }

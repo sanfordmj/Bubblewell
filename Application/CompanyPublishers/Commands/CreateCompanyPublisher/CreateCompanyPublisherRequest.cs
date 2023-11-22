@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyPublishers.Commands.CreateCompanyPublisher
 {
-    public sealed record CreateCompanyPublisherRequest(Guid companyId, Guid publisherId);
+    public sealed record CreateCompanyPublisherRequest(Guid companyId, Guid publisherId, DateTime? UpdatedAt, bool Deleted);
 }

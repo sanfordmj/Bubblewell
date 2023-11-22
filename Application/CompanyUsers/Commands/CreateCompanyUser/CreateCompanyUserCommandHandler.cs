@@ -16,7 +16,7 @@ namespace Application.CompanyUsers.Commands.CreateCompanyUser
         }
         public async Task<Guid> Handle(CreateCompanyUserCommand request, CancellationToken cancellationToken)
         {
-            var companyUser = new CompanyUser(new Guid(), request.companyId, request.userId);
+            var companyUser = new CompanyUser(new Guid(), request.companyId, request.userId, request.UpdatedAt, request.Deleted);
             _companyUserRepository.Insert(companyUser);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return companyUser.Id;

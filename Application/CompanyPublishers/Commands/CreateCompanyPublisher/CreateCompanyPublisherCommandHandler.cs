@@ -16,7 +16,7 @@ namespace Application.CompanyPublishers.Commands.CreateCompanyPublisher
         }
         public async Task<Guid> Handle(CreateCompanyPublisherCommand request, CancellationToken cancellationToken)
         {
-            var companyPublisher = new CompanyPublisher(new Guid(), request.companyId, request.publisherId);
+            var companyPublisher = new CompanyPublisher(new Guid(), request.companyId, request.publisherId, request.UpdatedAt, request.Deleted);
             _companyPublisherRepository.Insert(companyPublisher);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return companyPublisher.Id;

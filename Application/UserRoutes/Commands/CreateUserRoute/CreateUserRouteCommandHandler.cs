@@ -17,7 +17,7 @@ namespace Application.UserRoutes.Commands.CreateUserRoute
         }
         public async Task<Guid> Handle(CreateUserRouteCommand request, CancellationToken cancellationToken)
         {
-            var userRoute = new UserRoute(new Guid(), request.UserId, request.RouteId);
+            var userRoute = new UserRoute(new Guid(), request.UserId, request.RouteId, request.UpdatedAt, request.Deleted);
             _userRouteRepository.Insert(userRoute);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return userRoute.Id;

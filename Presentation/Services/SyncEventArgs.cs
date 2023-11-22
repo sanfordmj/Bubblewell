@@ -1,15 +1,9 @@
-﻿using Presentation.TableEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Presentation.Services
 {
-    public class AddressSyncEventArgs : EventArgs
+    public class SyncEventArgs : EventArgs
     {
-        public AddressSyncEventArgs(ListAction action, AddressSync item)
+        public SyncEventArgs(ListAction action, AddressSync item)
         {
             Action = action;
             Item = item;

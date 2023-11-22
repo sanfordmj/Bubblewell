@@ -16,7 +16,7 @@ namespace Application.Companies.Commands.CreateCompany
         }
         public async Task<Guid> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
-            var company = new Company(new Guid(), request.CompanyStatus, request.CompanyType, request.Name, request.Phone, request.Email, request.CreateDate);
+            var company = new Company(new Guid(), request.CompanyStatus, request.CompanyType, request.Name, request.Phone, request.Email, request.CreateDate, request.UpdatedAt, request.Deleted);
             _routeCompanyRepository.Insert(company);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return company.Id;

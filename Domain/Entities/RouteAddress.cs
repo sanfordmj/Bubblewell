@@ -6,14 +6,15 @@ namespace Domain.Entities
 {
     public sealed class RouteAddress: Entity
     {
-        public RouteAddress(Guid Id, Guid routeId, Guid addressId, bool visible, bool reviewed, int position, DateTime modifyDate) : base(Id)
+        public RouteAddress(Guid Id, Guid routeId, Guid addressId, bool visible, bool reviewed, int position, DateTime updatedAt, bool deleted) : base(Id)
         {
             RouteId = routeId;
             AddressId = addressId;
             Visible = visible;
             Reviewed = reviewed;
             Position = position;
-            ModifyDate = modifyDate;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
         }
 
         public RouteAddress() { }
@@ -23,17 +24,12 @@ namespace Domain.Entities
 
         [Required, ForeignKey("Address")]
         public Guid AddressId { get; set; }
-
-        public bool Visible { get; set; }
-        
-        public bool Reviewed { get; set; }
-        
-        public int? Position { get; set; }
-        
-        public DateTime? ModifyDate { get; set; }
-
+        public bool Visible { get; set; }        
+        public bool Reviewed { get; set; }        
+        public int? Position { get; set; }        
+        public DateTime? UpdatedAt { get; set; }
+        public bool Deleted { get; set; }
         public Route? Route { get; set; }
-
         public Address? Address { get; set; }
 
     }

@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.RouteAddressPublishers.Commands.CreateRouteAddressPublisher
 {
-    public sealed record CreateRouteAddressPublisherRequest(Guid routeAddressId, Guid publisherId);
+    public sealed record CreateRouteAddressPublisherRequest(Guid routeAddressId, Guid publisherId, DateTime? UpdatedAt, bool Deleted);
 }

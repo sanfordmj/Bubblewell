@@ -16,7 +16,7 @@ namespace Application.CompanyRoutes.Commands.CreateCompanyRoute
         }
         public async Task<Guid> Handle(CreateCompanyRouteCommand request, CancellationToken cancellationToken)
         {
-            var companyRoute = new CompanyRoute(new Guid(), request.companyId, request.routeId);
+            var companyRoute = new CompanyRoute(new Guid(), request.companyId, request.routeId, request.UpdatedAt, request.Deleted);
             _companyRouteRepository.Insert(companyRoute);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return companyRoute.Id;

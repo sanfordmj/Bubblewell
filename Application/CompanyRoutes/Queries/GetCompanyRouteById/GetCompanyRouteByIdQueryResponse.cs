@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyRoutes.Queries.GetCompanyRoutesById
 {
-    public sealed record GetCompanyRouteByIdQueryResponse(Guid Id, Guid CompanyId, Guid RouteId);
+    public sealed record GetCompanyRouteByIdQueryResponse(Guid Id, Guid CompanyId, Guid RouteId, DateTime? UpdatedAt, bool Deleted);
 }

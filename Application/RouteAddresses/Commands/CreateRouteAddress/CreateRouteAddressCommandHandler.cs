@@ -16,7 +16,7 @@ namespace Application.RouteAddresses.Commands.CreateRouteAddress
         }
         public async Task<Guid> Handle(CreateRouteAddressCommand request, CancellationToken cancellationToken)
         {
-            var routeAddress = new RouteAddress(new Guid(), request.RouteId, request.AddressId, request.Visible, request.Reviewed, request.Position, request.ModifyDate);
+            var routeAddress = new RouteAddress(new Guid(), request.RouteId, request.AddressId, request.Visible, request.Reviewed, request.Position, request.UpdatedAt, request.Deleted);
             _routeAddressRepository.Insert(routeAddress);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return routeAddress.Id;

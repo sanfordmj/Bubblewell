@@ -1,35 +1,25 @@
 version: '3.4'
 
-services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx
-    restart: always   
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro 
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-        my-network-name:
-            aliases:
-                - proxy-name
+networks:
+  default:    
+    name: proxy
+    external: true
 
+services:  
   PaperBoy.webapi:
     image: paperboy.webapi
-    container_name: api
+    container_name: webapi
+    environment:
+      - VIRTUAL_HOST=webapi.bubblewell.com 
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile    
     depends_on:
       PaperBoy.db:
         condition: service_healthy
-    environment:
-      - VIRTUAL_HOST=webapi.localhost
-    networks:
-        my-network-name:
-            aliases:
-                - frontend-name
+    ports:
+      - 5000:5000
+
   PaperBoy.db:
     image: postgres:13.2
     hostname: 'PaperBoy.db'
@@ -47,9 +37,3 @@ services:
       - ./files/db:/var/lib/postgresql/data
     ports:
       - 5432:5432
-    networks:
-        my-network-name:
-            aliases:
-                - sql-name
-networks:
-    my-network-name:

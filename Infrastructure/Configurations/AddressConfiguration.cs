@@ -19,6 +19,8 @@ namespace Infrastructure.Configurations
             builder.Property(x => x.LNG).HasMaxLength(255);
             builder.Property(x => x.Bagged).IsRequired();
             builder.Property(x => x.CreateDate).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }

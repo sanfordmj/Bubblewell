@@ -7,10 +7,12 @@ namespace Domain.Entities
 {
     public sealed class CompanyRoute : Entity
     {
-        public CompanyRoute(Guid Id, Guid companyId, Guid routeId) : base(Id)
+        public CompanyRoute(Guid Id, Guid companyId, Guid routeId, DateTime? updatedAt, bool deleted) : base(Id)
         {
             CompanyId = companyId;
             RouteId = routeId;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
         }
 
         public CompanyRoute() { }
@@ -20,7 +22,8 @@ namespace Domain.Entities
 
         [Required, ForeignKey("Route")]
         public Guid RouteId { get; set; }
-
+        public DateTime? UpdatedAt { get; set; }
+        public bool Deleted { get; set; }
         public Company? Company { get; set; }
         public Route? Route { get; set; }
 

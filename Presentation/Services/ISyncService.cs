@@ -1,21 +1,15 @@
-﻿using Presentation.TableEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Presentation.Services
 {
-    public  interface IAddressSyncService
+    public interface ISyncService<T>
     {
-        event EventHandler<AddressSyncEventArgs> TodoItemsUpdated;
+        event EventHandler<SyncEventArgs> TodoItemsUpdated;
 
         /// <summary>
         /// Get all the items in the list.
         /// </summary>
         /// <returns>The list of items (asynchronously)</returns>
-        Task<IEnumerable<AddressSync>> GetItemsAsync();
+        Task<IEnumerable<T>> GetItemsAsync();
 
         /// <summary>
         /// Refreshes the TodoItems list manually.
@@ -28,7 +22,7 @@ namespace Presentation.Services
         /// </summary>
         /// <param name="item">The item to be removed</param>
         /// <returns>A task that completes when the item is removed.</returns>
-        Task RemoveItemAsync(AddressSync item);
+        Task RemoveItemAsync(T item);
 
         /// <summary>
         /// Saves an item to the list.  If the item does not have an Id, then the item
@@ -37,6 +31,6 @@ namespace Presentation.Services
         /// </summary>
         /// <param name="item">The new item</param>
         /// <returns>A task that completes when the item is saved.</returns>
-        Task SaveItemAsync(AddressSync item);
+        Task SaveItemAsync(T item);
     }
 }

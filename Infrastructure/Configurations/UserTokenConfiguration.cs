@@ -21,6 +21,8 @@ namespace Infrastructure.Configurations
             builder.Property(x=>x.ExpireDate).IsRequired();
             builder.Property(x => x.IsExpired).IsRequired();
             builder.Property(x => x.IsRevoked).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
             builder.HasIndex(ra => new { ra.UserId });
         }
     }

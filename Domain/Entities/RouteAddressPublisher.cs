@@ -11,10 +11,12 @@ namespace Domain.Entities
 {
     public sealed class RouteAddressPublisher: Entity
     {
-        public RouteAddressPublisher(Guid Id, Guid routeAddressId, Guid publisherId) : base(Id)
+        public RouteAddressPublisher(Guid Id, Guid routeAddressId, Guid publisherId, DateTime? updatedAt, bool deleted) : base(Id)
         {
             RouteAddressId = routeAddressId;
             PublisherId = publisherId;
+            UpdatedAt = updatedAt;
+            Deleted = deleted;
         }
 
         [Required, ForeignKey("RouteAddress")]
@@ -22,7 +24,8 @@ namespace Domain.Entities
 
         [Required, ForeignKey("Publisher")]
         public Guid PublisherId { get; set; }
-
+        public DateTime? UpdatedAt { get; set; }
+        public bool Deleted { get; set; }
         public RouteAddress? RouteAddress { get; set; }
         public Publisher? Publisher { get; set; }
 

@@ -8,7 +8,6 @@ namespace Application.RouteAddresses.Commands.CreateRouteAddress
             RuleFor(x=>x.RouteId).NotEmpty();
             RuleFor(x=>x.AddressId).NotEmpty();
             RuleFor(x => x.Position).NotEmpty();
-            RuleFor(x => x.ModifyDate).NotEmpty();
         }
     }
 }

@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.UserTokens.Commands.CreateUserToken
 {
-    public sealed record CreateUserTokenCommand(Guid Id, Guid UserId, string Token, DateTime CreateDate, DateTime ExpireDate, bool IsExpired, bool IsRevoked) : ICommand<Guid>;
+    public sealed record CreateUserTokenCommand(Guid Id, Guid UserId, string Token, DateTime? CreateDate, DateTime? ExpireDate, bool IsExpired, bool IsRevoked, DateTime? UpdatedAt, bool Deleted) : ICommand<Guid>;
 }

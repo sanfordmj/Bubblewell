@@ -100,7 +100,7 @@ namespace Presentation.Controllers
 
                 string mytoken = tokenHandler.WriteToken(token);
 
-                CreateUserTokenCommand command = new CreateUserTokenCommand(new Guid(), user.Id, tokenHandler.WriteToken(token), DateTime.Now, expire, false, false);
+                CreateUserTokenCommand command = new CreateUserTokenCommand(new Guid(), user.Id, tokenHandler.WriteToken(token), DateTime.UtcNow, expire, false, false, DateTime.UtcNow, false);
 
                 var tokenId = await Sender.Send(command, cancellationToken);
 

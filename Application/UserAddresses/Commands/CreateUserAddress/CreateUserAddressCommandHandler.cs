@@ -17,7 +17,7 @@ namespace Application.UserAddresses.Commands.CreateUserAddress
         }
         public async Task<Guid> Handle(CreateUserAddressCommand request, CancellationToken cancellationToken)
         {
-            var userAddress = new UserAddress(new Guid(), request.UserId, request.AddressId, request.Visible, request.ModifyDate);
+            var userAddress = new UserAddress(new Guid(), request.UserId, request.AddressId, request.Visible, request.UpdatedAt, request.Deleted);
             _userAddressRepository.Insert(userAddress);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return userAddress.Id;

@@ -17,6 +17,8 @@ namespace Infrastructure.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x=>x.RouteAddressId).IsRequired();
             builder.Property(x=>x.PublisherId).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
             builder.HasIndex(ra => new { ra.RouteAddressId, ra.PublisherId}).IsUnique();
         }
     }

@@ -21,8 +21,8 @@ namespace Application.Addresses.Commands.CreateAddress
 
         public async Task<Guid> Handle(CreateAddressCommand request, CancellationToken cancellationToken)
         {
-            var address = new Address(new Guid(), request.addressStatus, request.addressType, request.street, request.city, request.state, request.zip, request.lat,
-            request.lng, request.comments, request.bagged, request.createDate, request.Version, request.UpdatedAt, request.Deleted);
+            var address = new Address(string.IsNullOrEmpty(request.SyncId) ? new Guid() : new Guid(request.SyncId), request.AddressStatus, request.AddressType, request.Street, request.City, request.State, request.Zip, request.Lat,
+            request.Lng, request.Comments, request.Bagged, request.CreateDate, request.UpdatedAt, request.Deleted);
             _addressRepository.Insert(address);
             await _unitOfWork.SaveChangesAsync();
             return address.Id;

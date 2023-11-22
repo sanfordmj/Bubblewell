@@ -19,7 +19,8 @@ namespace Infrastructure.Configurations
             builder.Property(x => x.AddressId).IsRequired();
             builder.Property(x => x.UserId).IsRequired();
             builder.Property(x => x.Visible).IsRequired();
-            builder.Property(x => x.ModifyDate).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
             builder.HasIndex(ra => new { ra.UserId, ra.AddressId}).IsUnique();
         }
     }

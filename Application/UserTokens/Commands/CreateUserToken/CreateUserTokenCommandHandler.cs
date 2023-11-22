@@ -22,7 +22,7 @@ namespace Application.UserTokens.Commands.CreateUserToken
         public async Task<Guid> Handle(CreateUserTokenCommand request, CancellationToken cancellationToken)
         {
 
-            var userToken = new UserToken(new Guid(), request.UserId, request.Token, request.CreateDate, request.ExpireDate, request.IsExpired, request.IsRevoked);
+            var userToken = new UserToken(new Guid(), request.UserId, request.Token, request.CreateDate, request.ExpireDate, request.IsExpired, request.IsRevoked, request.UpdatedAt, request.Deleted);
             _userTokenRepository.Insert(userToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return userToken.Id;

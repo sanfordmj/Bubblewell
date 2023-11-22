@@ -16,7 +16,7 @@ namespace Application.RouteAddressPublishers.Commands.CreateRouteAddressPublishe
         }
         public async Task<Guid> Handle(CreateRouteAddressPublisherCommand request, CancellationToken cancellationToken)
         {
-            var routeAddressPublisher = new RouteAddressPublisher(new Guid(), request.RouteAddressId, request.PublisherId);
+            var routeAddressPublisher = new RouteAddressPublisher(new Guid(), request.RouteAddressId, request.PublisherId, request.UpdatedAt, request.Deleted);
             _routeAddressPublisherRepository.Insert(routeAddressPublisher);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return routeAddressPublisher.Id;

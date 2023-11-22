@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.UserRoutes.Commands.CreateUserRoute
 {
-    public sealed record CreateUserRouteRequest(Guid UserId, Guid RouteId);
+    public sealed record CreateUserRouteRequest(Guid UserId, Guid RouteId, DateTime? UpdatedAt, bool Deleted);
 }

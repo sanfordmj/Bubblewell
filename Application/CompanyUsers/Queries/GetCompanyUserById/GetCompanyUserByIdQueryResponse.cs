@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Application.CompanyUsers.Queries.GetCompanyUserById
 {
-    public sealed record GetCompanyUserByIdQueryResponse(Guid Id, Guid CompanyId, Guid UserId);
+    public sealed record GetCompanyUserByIdQueryResponse(Guid Id, Guid CompanyId, Guid UserId, DateTime? UpdatedAt, bool Deleted);
 }

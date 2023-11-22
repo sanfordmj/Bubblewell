@@ -25,6 +25,8 @@ namespace Infrastructure.Configurations
             builder.Property(x => x.Email).HasMaxLength(254);
             builder.HasIndex(x => x.Email).IsUnique();
             builder.Property(x => x.CellPhone).HasMaxLength(18).IsRequired();
+            builder.Property(x => x.UpdatedAt).IsRequired();
+            builder.Property(x => x.Deleted).IsRequired();
         }
     }
 }
